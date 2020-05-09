@@ -3,6 +3,7 @@
 namespace Jakmall\Recruitment\Calculator\Commands;
 
 use Illuminate\Console\Command;
+use Carbon\Carbon;
 
 class MultiplyCommand extends Command
 {
@@ -31,8 +32,9 @@ class MultiplyCommand extends Command
         } else {
             $description = $this->generateCalculationDescription($numbers);
             $result = $this->calculateAll($numbers);
-
-            $this->comment(sprintf('%s = %s', $description, $result));
+            $output = sprintf('%s = %s', $description, $result);
+            $this->add_history('multiply', $description, $result, $output);
+            $this->comment($output);
         }
     }
 
@@ -85,5 +87,14 @@ class MultiplyCommand extends Command
     protected function calculate($number1, $number2)
     {
         return $number1 * $number2;
+    }
+
+    private function add_history($command, $description, $result, $output)
+    {
+        $created_at = Carbon::now();
+        $history_storage = fopen("history_list.log", "a");
+        $history_format = $command.",".$description.",".$result.",".$output.",".$created_at."\n";
+        fwrite($history_storage, $history_format);
+        fclose($history_storage);
     }
 }
