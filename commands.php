@@ -8,4 +8,5 @@ return [
     'divide' => Jakmall\Recruitment\Calculator\Commands\DivideCommand::class,
     'pow' => Jakmall\Recruitment\Calculator\Commands\PowCommand::class,
     'history:list' => Jakmall\Recruitment\Calculator\Commands\HistoryListCommand::class,
+    'history:clear' => Jakmall\Recruitment\Calculator\Commands\HistoryClearCommand::class,
 ];

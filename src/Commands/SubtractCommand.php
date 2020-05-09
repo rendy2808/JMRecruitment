@@ -91,7 +91,7 @@ class SubtractCommand extends Command
 
     private function add_history($command, $description, $result, $output)
     {
-        $created_at = Carbon::now();
+        $created_at = Carbon::now()->addHour(7);
         $history_storage = fopen("history_list.log", "a");
         $history_format = $command.",".$description.",".$result.",".$output.",".$created_at."\n";
         fwrite($history_storage, $history_format);

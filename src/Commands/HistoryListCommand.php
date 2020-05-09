@@ -30,7 +30,7 @@ class HistoryListCommand extends Command
             $history_headers = $this->getHeaders();
             $history_list = $this->mappingLogs($history_storage, $commands);
             if(count($history_list) < 1) {
-                $this->comment(sprintf('History is empty'));
+                $this->comment(sprintf('History is empty.'));
             } else {
                 $this->table($history_headers, $history_list);
             }
