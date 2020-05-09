@@ -5,6 +5,7 @@ namespace Jakmall\Recruitment\Calculator\Commands;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Carbon\Carbon;
 
 class PowCommand extends Command
 {
@@ -35,8 +36,9 @@ class PowCommand extends Command
         } else {
             $description = $this->generateCalculationDescription($numbers);
             $result = pow($base, $exponent);
-
-            $this->comment(sprintf('%s = %s', $description, $result));
+            $output = sprintf('%s = %s', $description, $result);
+            $this->add_history('pow', $description, $result, $output);
+            $this->comment($output);
         }
     }
 
@@ -62,5 +64,14 @@ class PowCommand extends Command
     protected function getOperator(): string
     {
         return '^';
+    }
+
+    private function add_history($command, $description, $result, $output)
+    {
+        $created_at = Carbon::now()->addHour(7);
+        $history_storage = fopen("history_list.log", "a");
+        $history_format = $command.",".$description.",".$result.",".$output.",".$created_at."\n";
+        fwrite($history_storage, $history_format);
+        fclose($history_storage);
     }
 }
