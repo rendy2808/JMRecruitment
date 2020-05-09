@@ -5,4 +5,5 @@ return [
     'add' => Jakmall\Recruitment\Calculator\Commands\AddCommand::class,
     'subtract' => Jakmall\Recruitment\Calculator\Commands\SubtractCommand::class,
     'multiply' => Jakmall\Recruitment\Calculator\Commands\MultiplyCommand::class,
+    'divide' => Jakmall\Recruitment\Calculator\Commands\DivideCommand::class,
 ];
