@@ -4,17 +4,17 @@ namespace Jakmall\Recruitment\Calculator\Commands;
 
 use Illuminate\Console\Command;
 
-class AddCommand extends Command
+class SubtractCommand extends Command
 {
     /**
      * @var string
      */
-    protected $signature =  'add {numbers* : The numbers to be added}';
+    protected $signature =  'subtract {numbers* : The numbers to be subtracted}';
 
     /**
      * @var string
      */
-    protected $description = 'Add all given Numbers';
+    protected $description = 'Subtract all given Numbers';
 
 
     public function __construct()
@@ -57,7 +57,7 @@ class AddCommand extends Command
 
     protected function getOperator(): string
     {
-        return '+';
+        return '-';
     }
 
     /**
@@ -84,6 +84,6 @@ class AddCommand extends Command
      */
     protected function calculate($number1, $number2)
     {
-        return $number1 + $number2;
+        return $number1 - $number2;
     }
 }
